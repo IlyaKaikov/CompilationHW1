@@ -35,8 +35,8 @@ enum tokentype {
     STRING,
     UNCLOSED_STRING,
     UNDEFINED_ESCAPE,
-    INVALID_HEXA,
-    ERROR
+    UNDEFINED_HEXA,
+    UNKNOWN_CHAR
 };
 
 extern int yylineno;

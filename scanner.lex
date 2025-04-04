@@ -14,7 +14,7 @@ digitletter     ([0-9a-zA-Z])
 string          ([ !#-\[	\]-~])
 escape          ([\\0\"nrt])
 notescape       ([^\\0\"nrt])
-hexa            (x[0-7][0-9A-Fa-f])
+hexa            (x(([2-6][0-9a-fA-F])|(7[0-9a-eA-E])))
 
 %%
 void                                                                            return VOID;
@@ -49,6 +49,6 @@ continue                                                                        
 \"({string}|\\{escape}|\\{hexa})*\"                                             return STRING;
 \"({string}|\\{escape}|\\{hexa})*                                               return UNCLOSED_STRING;
 \"({string}|\\{escape}|\\{hexa})*\\{notescape}                                  return UNDEFINED_ESCAPE;
-\"({string}|\\{escape}|\\{hexa})*\\x([^0-7][0-9A-Fa-f]|[0-7][^0-9A-Fa-f]|[^0-7][^0-9A-Fa-f]|[^0-9A-Fa-f])    return INVALID_HEXA;
+\"({string}|\\{escape}|\\{hexa})*\\x([^0-9a-fA-F]|([^0-7][0-9a-fA-F])|([0-7][^0-9a-fA-F])|([^0-7][^0-9a-fA-F])|([01][0-9a-fA-F])|7[fF])    return UNDEFINED_HEXA;
 {whitespace}                                                                    ;
-.                                                                               return ERROR;
+.                                                                               return UNKNOWN_CHAR;
