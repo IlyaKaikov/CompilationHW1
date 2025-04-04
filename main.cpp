@@ -8,7 +8,7 @@ int main() {
 
     // read tokens until the end of file is reached
     while ((token = static_cast<tokentype>(yylex()))) {
-        output::printToken(yylineno, token, yytext);
+        classifyToken(token);
     }
     return 0;
 }
