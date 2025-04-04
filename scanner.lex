@@ -52,3 +52,4 @@ continue                                                                        
 \"({string}|\\{escape}|\\{hexa})*\\x([^0-9a-fA-F]|([^0-7][0-9a-fA-F])|([0-7][^0-9a-fA-F])|([^0-7][^0-9a-fA-F])|([01][0-9a-fA-F])|7[fF])    return UNDEFINED_HEXA;
 {whitespace}                                                                    ;
 .                                                                               return UNKNOWN_CHAR;
+%%

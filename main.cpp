@@ -3,6 +3,10 @@
 #include "tokens.hpp"
 #include "output.hpp"
 
+void classifyToken(tokentype token);
+void handleUndefinedHexa();
+void handleString();
+
 int main() {
     enum tokentype token;
 
@@ -17,21 +21,27 @@ void classifyToken(tokentype token) {
     switch (token) {
         case STRING:
             handleString();
+            break;
 
         case UNCLOSED_STRING:
             output::errorUnclosedString();
+            break;
 
         case UNDEFINED_ESCAPE:
             output::errorUndefinedEscape(yytext);
+            break;
         
         case UNDEFINED_HEXA:
             handleUndefinedHexa();
+            break;
 
         case UNKNOWN_CHAR:
             output::errorUnknownChar(yytext[0]);
+            break;
 
         default:
             output::printToken(yylineno, token, yytext);
+            break;
     }
 }
 
