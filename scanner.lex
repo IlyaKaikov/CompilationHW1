@@ -42,7 +42,7 @@ continue                                                                        
 \]                                                                              return RBRACK;
 =                                                                               return ASSIGN;
 [=!<>]=|<|>                                                                     return RELOP;
-[+-*/]                                                                          return BINOP;
+[-+*/]                                                                          return BINOP;
 \/\/[^\r\n]*                                                                    return COMMENT;
 {letter}{digitletter}*                                                          return ID;
 0|([1-9]+{digit}*)                                                              return NUM;
