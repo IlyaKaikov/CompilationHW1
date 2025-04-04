@@ -4,6 +4,7 @@
 #include "output.hpp"
 
 void classifyToken(tokentype token);
+void handleUndefinedEscape();
 void handleUndefinedHexa();
 void handleString();
 
@@ -28,7 +29,7 @@ void classifyToken(tokentype token) {
             break;
 
         case UNDEFINED_ESCAPE:
-            output::errorUndefinedEscape(yytext);
+            handleUndefinedEscape();
             break;
         
         case UNDEFINED_HEXA:
@@ -43,6 +44,14 @@ void classifyToken(tokentype token) {
             output::printToken(yylineno, token, yytext);
             break;
     }
+}
+
+void handleUndefinedEscape() {
+    std::string str = yytext;
+    std::size_t size = str.size();
+
+    const char* cstr = (str.substr(size - 1, 1)).c_str();
+    output::errorUndefinedEscape(cstr);
 }
 
 void handleUndefinedHexa() {
