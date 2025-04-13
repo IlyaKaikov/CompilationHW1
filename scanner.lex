@@ -46,6 +46,7 @@ continue                                                                        
 \/\/[^\r\n]*                                                                    return COMMENT;
 {letter}{digitletter}*                                                          return ID;
 0|([1-9]+{digit}*)                                                              return NUM;
+(0|([1-9]+{digit}*))b                                                           return NUM_B;
 \"({string}|\\{escape}|\\{hexa})*\"                                             return STRING;
 \"({string}|\\{escape}|\\{hexa})*                                               return UNCLOSED_STRING;
 \"({string}|\\{escape}|\\{hexa})*\\{notescape}                                  return UNDEFINED_ESCAPE;
